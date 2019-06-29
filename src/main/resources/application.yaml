@@ -1,0 +1,24 @@
+http:
+  host: 127.0.0.1
+  port: 8080
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "health, metrics"
+      base-path: "/"
+      path-mapping:
+        metrics: "actuator/metrics"
+
+server:
+  port: "8443"
+
+netty:
+  http:
+    port: 8080
