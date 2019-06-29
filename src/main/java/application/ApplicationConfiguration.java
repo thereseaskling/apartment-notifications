@@ -14,9 +14,8 @@ import org.springframework.web.reactive.function.client.WebClient.RequestHeaders
 public class ApplicationConfiguration {
 
   @Bean
-  ApplicationEntryPoint entryPoint(final ApartmentAdRetriever apartmentAdRetriever, final ObjectMapper objectMapper,
-      final ApartmentAdHandler apartmentAdHandler) {
-    return new ApplicationEntryPoint(apartmentAdRetriever, objectMapper, apartmentAdHandler);
+  ApplicationEntryPoint entryPoint(final ApartmentAdRetriever apartmentAdRetriever) {
+    return new ApplicationEntryPoint(apartmentAdRetriever);
   }
 
   @Bean
@@ -29,8 +28,9 @@ public class ApplicationConfiguration {
   }
 
   @Bean
-  ApartmentAdRetriever apartmentAdRetriever(final RequestHeadersSpec requestHeadersSpec) {
-    return new ApartmentAdRetriever(requestHeadersSpec);
+  ApartmentAdRetriever apartmentAdRetriever(final RequestHeadersSpec requestHeadersSpec, final ObjectMapper objectMapper,
+      final ApartmentAdHandler apartmentAdHandler) {
+    return new ApartmentAdRetriever(requestHeadersSpec, objectMapper, apartmentAdHandler);
   }
 
   @Bean

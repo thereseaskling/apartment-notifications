@@ -29,13 +29,13 @@ public class ApartmentController {
   }
 
   @GetMapping("/{id}")
-  private Mono<ResponseEntity<String>> getApartmentById(@PathVariable int id) {
+  public Mono<ResponseEntity<String>> getApartmentById(@PathVariable int id) {
     final Optional<ApartmentAd> apartmentAd = apartmentAdHandler.getApartmentById(id);
     if (apartmentAd.isPresent()) {
       try {
         return Mono.just(ResponseEntity.ok().body(objectMapper.writeValueAsString(apartmentAd.get())));
       } catch (final JsonProcessingException e) {
-        LOG.info("Failed to parse apertment ad to JSon. ad: {}", apartmentAd);
+        LOG.info("Failed to parse apartment ad to JSon. ad: {}", apartmentAd);
         return Mono.just(ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to retrieve apartment info"));
       }
     }
@@ -43,7 +43,7 @@ public class ApartmentController {
   }
 
   @GetMapping
-  private Flux<ApartmentAd> getAllEmployees() {
+  public Flux<ApartmentAd> getAllEmployees() {
     return apartmentAdHandler.getAllApartments();
   }
 }
