@@ -1,13 +1,11 @@
 package application;
 
+import application.ApartmentInfo.ApartmentAd;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.Collections;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 import javax.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,12 +33,22 @@ public class ApartmentAdRetriever {
       @Override
       public void run() {
         LOG.info("Requesting apartment ads");
-        final String requestResponse = requestHeadersSpec.retrieve().bodyToMono(String.class).block();
-        apartmentAdHandler.addApartments(parseResponse(requestResponse));
+        final Optional<String> requestResponse = retrieveAllAds();
+        requestResponse.ifPresent(response -> apartmentAdHandler.addApartments(parseResponse(response)));
       }
     };
 
     timer.scheduleAtFixedRate(request, Duration.ofSeconds(5).toMillis(), Duration.ofMinutes(5).toMillis());
+  }
+
+  private Optional<String> retrieveAllAds() {
+    try{
+      return Optional.of(requestHeadersSpec.retrieve().bodyToMono(String.class).block());
+    } catch (final Exception e){
+      LOG.info("Failed to retrieve ads");
+      LOG.info(e.getMessage());
+      return Optional.empty();
+    }
   }
 
   private List<ApartmentAd> parseResponse(final String response) {
@@ -54,7 +62,7 @@ public class ApartmentAdRetriever {
   }
 
   @PreDestroy
-  void destroy(){
+  public void destroy(){
     timer.cancel();
   }
 }

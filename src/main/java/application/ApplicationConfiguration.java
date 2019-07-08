@@ -39,7 +39,12 @@ public class ApplicationConfiguration {
   }
 
   @Bean
-  ApartmentAdHandler adHandler() {
-    return new ApartmentAdHandler();
+  ApartmentAdHandler adHandler(final NotificationHandler notificationHandler) {
+    return new ApartmentAdHandler(notificationHandler);
+  }
+
+  @Bean
+  NotificationHandler notificationHandler(){
+    return new NotificationHandler();
   }
 }
