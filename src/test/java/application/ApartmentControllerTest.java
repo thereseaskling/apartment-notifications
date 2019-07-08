@@ -20,7 +20,7 @@ public class ApartmentControllerTest {
 
   @Test
   public void shouldReturnCorrectResponse() {
-    webTestClient.get().uri("http://localhost:8080/apartments/23456")
+    webTestClient.get().uri("http://localhost:8080/apartments")
         .header(HttpHeaders.CONTENT_TYPE, "application/json")
         .exchange()
         .expectStatus().isOk();
