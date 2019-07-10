@@ -5,7 +5,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,9 +46,9 @@ public class ApartmentAdRetriever {
   }
 
   private Optional<String> retrieveAllAds() {
-    try{
+    try {
       return Optional.of(requestHeadersSpec.retrieve().bodyToMono(String.class).block());
-    } catch (final Exception e){
+    } catch (final Exception e) {
       LOG.info("Failed to retrieve ads");
       LOG.info(e.getMessage());
       return Optional.empty();
@@ -62,7 +66,7 @@ public class ApartmentAdRetriever {
   }
 
   @PreDestroy
-  public void destroy(){
+  public void destroy() {
     timer.cancel();
   }
 }

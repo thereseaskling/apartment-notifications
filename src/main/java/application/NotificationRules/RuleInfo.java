@@ -2,50 +2,78 @@ package application.NotificationRules;
 
 import application.ApartmentInfo.ApartmentArea;
 import application.ApartmentInfo.SubArea;
-
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import org.apache.commons.lang3.tuple.Pair;
 
 public class RuleInfo {
-    private List<ApartmentArea> areas;
-    private List<SubArea> subAreas;
-    private List<Integer> rooms;
-    private List<Integer> size;
-    private boolean student;
-    private boolean senior;
 
-    private final String email;
+  private List<ApartmentArea> areas;
+  private List<SubArea> subAreas;
+  private List<Integer> rooms;
+  private Pair<Integer, Integer> sizeRange;
+  private boolean student;
+  private boolean senior;
 
-    public RuleInfo(List<ApartmentArea> areas, List<SubArea> subAreas, List<Integer> rooms, List<Integer> size, boolean student, boolean senior, String email) {
-        this.areas = areas;
-        this.subAreas = subAreas;
-        this.rooms = rooms;
-        this.size = size;
-        this.student = student;
-        this.senior = senior;
-        this.email = email;
-    }
+  private final String email;
 
-    public List<ApartmentArea> getAreas() {
-        return areas;
-    }
+  public RuleInfo(final String email) {
+    this.email = email;
+    areas = new ArrayList<>();
+    subAreas = new ArrayList<>();
+    rooms = new ArrayList<>();
+  }
 
-    public List<SubArea> getSubAreas() {
-        return subAreas;
-    }
+  public List<ApartmentArea> getAreas() {
+    return areas;
+  }
 
-    public List<Integer> getRooms() {
-        return rooms;
-    }
+  public void setAreas(final List<ApartmentArea> areas) {
+    this.areas = areas;
+  }
 
-    public List<Integer> getSize() {
-        return size;
-    }
+  public List<SubArea> getSubAreas() {
+    return subAreas;
+  }
 
-    public boolean isStudent() {
-        return student;
-    }
+  public void setSubAreas(final List<SubArea> subAreas) {
+    this.subAreas = subAreas;
+  }
 
-    public boolean isSenior() {
-        return senior;
-    }
+  public List<Integer> getRooms() {
+    return rooms;
+  }
+
+  public void setRooms(final List<Integer> rooms) {
+    this.rooms = rooms;
+  }
+
+  public Optional<Pair<Integer, Integer>> getSizeRange() {
+    return Optional.ofNullable(sizeRange);
+  }
+
+  public void setSizeRange(final Pair<Integer, Integer> sizeRange) {
+    this.sizeRange = sizeRange;
+  }
+
+  public Optional<Boolean> isStudent() {
+    return Optional.ofNullable(student);
+  }
+
+  public void setStudent(final boolean student) {
+    this.student = student;
+  }
+
+  public Optional<Boolean> isSenior() {
+    return Optional.ofNullable(senior);
+  }
+
+  public void setSenior(final boolean senior) {
+    this.senior = senior;
+  }
+
+  public String getEmail() {
+    return email;
+  }
 }

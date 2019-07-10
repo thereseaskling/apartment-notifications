@@ -44,7 +44,7 @@ public class ApplicationConfiguration {
   }
 
   @Bean
-  NotificationHandler notificationHandler(){
+  NotificationHandler notificationHandler() {
     return new NotificationHandler();
   }
 }
