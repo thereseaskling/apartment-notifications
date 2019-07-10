@@ -1,7 +1,11 @@
 package application;
 
+import application.ApartmentInfo.ApartmentArea;
+import application.NotificationRules.RuleHandler;
+import application.NotificationRules.RuleInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -44,7 +48,17 @@ public class ApplicationConfiguration {
   }
 
   @Bean
-  NotificationHandler notificationHandler() {
-    return new NotificationHandler();
+  RuleHandler ruleHandler(){
+    final RuleHandler ruleHandler = new RuleHandler();
+    final RuleInfo ruleInfo = new RuleInfo("therese.askling@gmail.com");
+
+    ruleInfo.setAreas(Arrays.asList(ApartmentArea.STOCKHOLM));
+    ruleHandler.addRule(ruleInfo);
+    return ruleHandler;
+  }
+
+  @Bean
+  NotificationHandler notificationHandler(final RuleHandler ruleHandler) {
+    return new NotificationHandler(ruleHandler);
   }
 }

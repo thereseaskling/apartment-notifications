@@ -2,6 +2,7 @@ package application.NotificationRules;
 
 import application.ApartmentInfo.ApartmentAd;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RuleHandler implements RuleChecker {
 
@@ -18,6 +19,6 @@ public class RuleHandler implements RuleChecker {
 
   @Override
   public List<String> getMatchingRecipients(final ApartmentAd apartmentAd) {
-    return ruleChecker.getMatchingRecipients(apartmentAd);
+    return ruleChecker.getMatchingRecipients(apartmentAd).stream().distinct().collect(Collectors.toList());
   }
 }

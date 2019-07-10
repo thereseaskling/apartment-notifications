@@ -64,7 +64,7 @@ public enum SubArea {
 
   public static Optional<SubArea> getApartmentArea(final String area) {
     return Arrays.stream(SubArea.values())
-        .filter(apartmentArea -> apartmentArea.areaValue.equals(area)).findAny();
+        .filter(apartmentArea -> apartmentArea.areaValue.equalsIgnoreCase(area)).findAny();
   }
 
   public List<SubArea> getAllApartmentAreas() {

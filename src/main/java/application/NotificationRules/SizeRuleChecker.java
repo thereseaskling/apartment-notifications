@@ -11,10 +11,10 @@ import org.apache.commons.lang3.tuple.Pair;
 
 public class SizeRuleChecker implements RuleChecker {
 
-  private final Map<Integer, StudentRuleChecker> studentRules;
+  private final Map<Integer, StudentRuleChecker> sizeRules;
 
   public SizeRuleChecker(final RuleInfo rule) {
-    studentRules = new HashMap<>();
+    sizeRules = new HashMap<>();
     addRule(rule);
   }
 
@@ -25,17 +25,17 @@ public class SizeRuleChecker implements RuleChecker {
   }
 
   private void addRule(final Integer size, final RuleInfo rule) {
-    if (studentRules.containsKey(size)) {
-      studentRules.get(size).addRule(rule);
+    if (sizeRules.containsKey(size)) {
+      sizeRules.get(size).addRule(rule);
     } else {
-      studentRules.put(size, new StudentRuleChecker(rule));
+      sizeRules.put(size, new StudentRuleChecker(rule));
     }
   }
 
   @Override
   public List<String> getMatchingRecipients(final ApartmentAd apartmentAd) {
     final List<String> matchingRecipients = new ArrayList<>();
-    final Optional<StudentRuleChecker> rules = Optional.ofNullable(studentRules.get(apartmentAd.getYta()));
+    final Optional<StudentRuleChecker> rules = Optional.ofNullable(sizeRules.get(apartmentAd.getYta()));
     rules.ifPresent(rule -> matchingRecipients.addAll(rule.getMatchingRecipients(apartmentAd)));
     return matchingRecipients;
   }

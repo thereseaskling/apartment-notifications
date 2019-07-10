@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import application.ApartmentInfo.ApartmentAd;
 import application.ApartmentInfo.ApartmentArea;
+import application.ApartmentInfo.SubArea;
 import java.util.Arrays;
+import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 
 class RulesHandlerTest {
@@ -22,11 +24,88 @@ class RulesHandlerTest {
     final ApartmentAd apartmentAd = new ApartmentAd();
     apartmentAd.setKommun("Stockholm");
     apartmentAd.setAntalRum(5);
+    apartmentAd.setStudent(false);
+    apartmentAd.setYta(45);
+
+    rulesHandler.addRule(rule);
+    assertTrue(!rulesHandler.getMatchingRecipients(apartmentAd).isEmpty());
+    assertEquals(rulesHandler.getMatchingRecipients(apartmentAd).size(), 1);
+    assertEquals(rulesHandler.getMatchingRecipients(apartmentAd).get(0), myEmail);
+  }
+
+  @Test
+  void shouldGetCorrectRecipientWhenCheckingForStudent() {
+    final RuleHandler rulesHandler = new RuleHandler();
+
+    final RuleInfo rule = new RuleInfo(myEmail);
+    rule.setStudent(true);
+
+    final ApartmentAd apartmentAd = new ApartmentAd();
+    apartmentAd.setKommun("Stockholm");
+    apartmentAd.setAntalRum(5);
     apartmentAd.setStudent(true);
     apartmentAd.setYta(45);
 
     rulesHandler.addRule(rule);
     assertTrue(!rulesHandler.getMatchingRecipients(apartmentAd).isEmpty());
+    assertEquals(rulesHandler.getMatchingRecipients(apartmentAd).size(), 1);
+    assertEquals(rulesHandler.getMatchingRecipients(apartmentAd).get(0), myEmail);
+  }
+
+  @Test
+  void shouldGetCorrectRecipientWhenCheckingForSize() {
+    final RuleHandler rulesHandler = new RuleHandler();
+
+    final RuleInfo rule = new RuleInfo(myEmail);
+    rule.setSizeRange(Pair.of(40, 60));
+
+    final ApartmentAd apartmentAd = new ApartmentAd();
+    apartmentAd.setKommun("Stockholm");
+    apartmentAd.setAntalRum(5);
+    apartmentAd.setStudent(false);
+    apartmentAd.setYta(45);
+
+    rulesHandler.addRule(rule);
+    assertTrue(!rulesHandler.getMatchingRecipients(apartmentAd).isEmpty());
+    assertEquals(rulesHandler.getMatchingRecipients(apartmentAd).size(), 1);
+    assertEquals(rulesHandler.getMatchingRecipients(apartmentAd).get(0), myEmail);
+  }
+
+  @Test
+  void shouldGetCorrectRecipientWhenCheckingForSubArea() {
+    final RuleHandler rulesHandler = new RuleHandler();
+
+    final RuleInfo rule = new RuleInfo(myEmail);
+    rule.setSubAreas(Arrays.asList((SubArea.OSTERMALM)));
+
+    final ApartmentAd apartmentAd = new ApartmentAd();
+    apartmentAd.setStadsdel("Östermalm");
+    apartmentAd.setAntalRum(5);
+    apartmentAd.setStudent(false);
+    apartmentAd.setYta(45);
+
+    rulesHandler.addRule(rule);
+    assertTrue(!rulesHandler.getMatchingRecipients(apartmentAd).isEmpty());
+    assertEquals(rulesHandler.getMatchingRecipients(apartmentAd).size(), 1);
+    assertEquals(rulesHandler.getMatchingRecipients(apartmentAd).get(0), myEmail);
+  }
+
+  @Test
+  void shouldGetCorrectRecipientWhenCheckingForNumberOfRooms() {
+    final RuleHandler rulesHandler = new RuleHandler();
+
+    final RuleInfo rule = new RuleInfo(myEmail);
+    rule.setRooms(Arrays.asList(5));
+
+    final ApartmentAd apartmentAd = new ApartmentAd();
+    apartmentAd.setStadsdel("Östermalm");
+    apartmentAd.setAntalRum(5);
+    apartmentAd.setStudent(false);
+    apartmentAd.setYta(45);
+
+    rulesHandler.addRule(rule);
+    assertTrue(!rulesHandler.getMatchingRecipients(apartmentAd).isEmpty());
+    assertEquals(rulesHandler.getMatchingRecipients(apartmentAd).size(), 1);
     assertEquals(rulesHandler.getMatchingRecipients(apartmentAd).get(0), myEmail);
   }
 }

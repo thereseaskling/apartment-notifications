@@ -41,9 +41,11 @@ public class SubAreaRuleChecker implements RuleChecker {
   @Override
   public List<String> getMatchingRecipients(final ApartmentAd apartmentAd) {
     final List<String> matchingRecipients = new ArrayList<>();
-    final Optional<RoomRuleChecker> roomRuleChecker = Optional
-        .ofNullable(subAreas.get(SubArea.getApartmentArea(apartmentAd.getStadsdel()).orElse(SubArea.EMPTY)));
-    roomRuleChecker.ifPresent(rule -> matchingRecipients.addAll(rule.getMatchingRecipients(apartmentAd)));
+    final Optional<SubArea> apartmentArea = SubArea.getApartmentArea(apartmentAd.getStadsdel());
+    apartmentArea.ifPresent(area -> Optional.ofNullable(subAreas.get(area))
+        .ifPresent(rule -> matchingRecipients.addAll(rule.getMatchingRecipients(apartmentAd))));
+    Optional.ofNullable(subAreas.get(SubArea.EMPTY))
+        .ifPresent(rule -> matchingRecipients.addAll(rule.getMatchingRecipients(apartmentAd)));
     return matchingRecipients;
   }
 
