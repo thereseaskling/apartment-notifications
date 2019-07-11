@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 public class RuleHandler implements RuleChecker {
 
   private static final Logger LOG = LoggerFactory.getLogger(RuleHandler.class);
-  private static final String filename = "C:\\Users\\there\\Repos\\apartment-notifications\\saved_information\\notification_rules";
+  private static final String filename = "\\saved_information\\notification_rules";
 
   private final RuleChecker ruleChecker;
   private final ObjectMapper objectMapper;
