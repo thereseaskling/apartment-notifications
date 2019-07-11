@@ -29,7 +29,7 @@ public class RuleHandler implements RuleChecker {
     this.objectMapper = objectMapper;
     this.ruleChecker = new ApartmentAreaRuleChecker();
     rules = new ArrayList<>();
-    initialiseRules();
+    //initialiseRules();
   }
 
   private void initialiseRules() {
@@ -55,7 +55,7 @@ public class RuleHandler implements RuleChecker {
   public void addRule(final RuleInfo ruleInfo) {
     ruleChecker.addRule(ruleInfo);
     rules.add(ruleInfo);
-    saveRules();
+    //saveRules();
   }
 
   private void saveRules() {
