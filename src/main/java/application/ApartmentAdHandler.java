@@ -29,7 +29,7 @@ public class ApartmentAdHandler {
   private final NotificationHandler notificationHandler;
   private final ObjectMapper objectMapper;
 
-  private static final String filename = "\\saved_information\\apartment_ads";
+  private static final String filename = "apartment_ads";
 
   public ApartmentAdHandler(final NotificationHandler notificationHandler, final ObjectMapper objectMapper) {
     this.notificationHandler = notificationHandler;
@@ -81,7 +81,6 @@ public class ApartmentAdHandler {
   }
 
   private void saveToFile() {
-
     try (final BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
       writer.write(objectMapper.writeValueAsString(apartmentAds));
     } catch (final IOException e) {

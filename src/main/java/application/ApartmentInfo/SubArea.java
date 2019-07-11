@@ -50,6 +50,19 @@ public enum SubArea {
   ENSKEDE_GARD("Enskede Gård"),
   LILLA_ESSINGEN("Lilla Essingen"),
   OSTERMALM("Östermalm"),
+  GRIMSTA("Grimsta"),
+  HJORTHAGEN("Hjorthagen"),
+  HASSELBY_GARD("Hässelby Gård"),
+  KARRTORP("Kärrtorp"),
+  MARIEHALL("Mariehäll"),
+  RACKSTA("Råcksta"),
+  SKARHOLMEN("Skärholmen"),
+  SVEDMYRA("Svedmyra"),
+  SODRA_HAMMARBYHAMNEN("Södra Hammarbyhamnen"),
+  ULVSUNDA_INDUSTRIOMRADE("Ulvsunda Industriområde"),
+  VASTERTORP("Västertorp"),
+  ARSTA("Årsta"),
+  BECKOMBERGA("Beckomberga"),
   EMPTY("empty");
 
   private final String areaValue;
