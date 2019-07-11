@@ -13,11 +13,16 @@ public class RuleInfo implements Serializable {
   private List<ApartmentArea> areas;
   private List<SubArea> subAreas;
   private List<Integer> rooms;
-  private Pair<Integer, Integer> sizeRange;
+  private Integer sizeFrom;
+  private Integer sizeTo;
   private Boolean student;
   private Boolean senior;
   private Boolean elevator;
   private Boolean balcony;
+  private Boolean shortTime;
+  private Boolean youth;
+  private Boolean temporaryQueue;
+  private Boolean newProduction;
 
   private final String email;
 
@@ -26,15 +31,6 @@ public class RuleInfo implements Serializable {
     areas = new ArrayList<>();
     subAreas = new ArrayList<>();
     rooms = new ArrayList<>();
-  }
-
-  public RuleInfo(final List<ApartmentArea> areas, final List<SubArea> subAreas, final List<Integer> rooms,
-      final Pair<Integer, Integer> sizeRange, final String email) {
-    this.areas = areas;
-    this.subAreas = subAreas;
-    this.rooms = rooms;
-    this.sizeRange = sizeRange;
-    this.email = email;
   }
 
   public List<ApartmentArea> getAreas() {
@@ -62,11 +58,30 @@ public class RuleInfo implements Serializable {
   }
 
   public Optional<Pair<Integer, Integer>> getSizeRange() {
-    return Optional.ofNullable(sizeRange);
+    if (sizeFrom == null && sizeTo == null) {
+      return Optional.empty();
+    }
+    if (sizeTo == null) {
+      return Optional.of(Pair.of(sizeFrom, 150));
+    }
+    if (sizeFrom == null) {
+      return Optional.of(Pair.of(1, sizeTo));
+    }
+
+    return Optional.of(Pair.of(sizeFrom, sizeTo));
   }
 
   public void setSizeRange(final Pair<Integer, Integer> sizeRange) {
-    this.sizeRange = sizeRange;
+    this.sizeFrom = sizeRange.getLeft();
+    this.sizeTo = sizeRange.getRight();
+  }
+
+  public void setSizeFrom(final Integer sizeFrom) {
+    this.sizeFrom = sizeFrom;
+  }
+
+  public void setSizeTo(final Integer sizeTo) {
+    this.sizeTo = sizeTo;
   }
 
   public Optional<Boolean> isStudent() {
@@ -103,5 +118,37 @@ public class RuleInfo implements Serializable {
 
   public void setBalcony(final boolean balcony) {
     this.balcony = balcony;
+  }
+
+  public Optional<Boolean> getShortTime() {
+    return Optional.ofNullable(shortTime);
+  }
+
+  public void setShortTime(final Boolean shortTime) {
+    this.shortTime = shortTime;
+  }
+
+  public Optional<Boolean> getYouth() {
+    return Optional.ofNullable(youth);
+  }
+
+  public void setYouth(final Boolean youth) {
+    this.youth = youth;
+  }
+
+  public Optional<Boolean> getTemporaryQueue() {
+    return Optional.ofNullable(temporaryQueue);
+  }
+
+  public void setTemporaryQueue(final Boolean temporaryQueue) {
+    this.temporaryQueue = temporaryQueue;
+  }
+
+  public Optional<Boolean> getNewProduction() {
+    return Optional.ofNullable(newProduction);
+  }
+
+  public void setNewProduction(final Boolean newProduction) {
+    this.newProduction = newProduction;
   }
 }

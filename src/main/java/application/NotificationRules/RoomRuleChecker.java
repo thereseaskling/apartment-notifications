@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 
 class RoomRuleChecker implements RuleChecker {
 
-  private final Map<Integer, SizeRuleChecker> roomRules;
+  private final Map<Integer, RuleChecker> roomRules;
 
   RoomRuleChecker(final RuleInfo ruleInfo) {
     roomRules = new HashMap<>();
@@ -37,7 +37,7 @@ class RoomRuleChecker implements RuleChecker {
   @Override
   public List<String> getMatchingRecipients(final ApartmentAd apartmentAd) {
     final List<String> matchingRecipients = new ArrayList<>();
-    final Optional<SizeRuleChecker> sizeRules = Optional.ofNullable(roomRules.get(apartmentAd.getAntalRum()));
+    final Optional<RuleChecker> sizeRules = Optional.ofNullable(roomRules.get(apartmentAd.getAntalRum()));
     sizeRules.ifPresent(rule -> matchingRecipients.addAll(rule.getMatchingRecipients(apartmentAd)));
     return matchingRecipients;
   }

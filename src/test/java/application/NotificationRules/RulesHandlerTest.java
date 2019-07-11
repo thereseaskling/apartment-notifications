@@ -30,6 +30,9 @@ class RulesHandlerTest {
     apartmentAd.setSenior(false);
     apartmentAd.setHiss(true);
     apartmentAd.setBalkong(false);
+    apartmentAd.setUngdom(true);
+    apartmentAd.setKorttid(true);
+    apartmentAd.setNyproduktion(true);
     apartmentAd.setYta(45);
 
     rulesHandler.addRule(rule);
@@ -52,6 +55,9 @@ class RulesHandlerTest {
     apartmentAd.setSenior(true);
     apartmentAd.setHiss(false);
     apartmentAd.setBalkong(false);
+    apartmentAd.setUngdom(true);
+    apartmentAd.setKorttid(true);
+    apartmentAd.setNyproduktion(true);
     apartmentAd.setYta(45);
 
     rulesHandler.addRule(rule);
@@ -74,6 +80,9 @@ class RulesHandlerTest {
     apartmentAd.setSenior(false);
     apartmentAd.setHiss(false);
     apartmentAd.setBalkong(true);
+    apartmentAd.setUngdom(false);
+    apartmentAd.setKorttid(true);
+    apartmentAd.setNyproduktion(false);
     apartmentAd.setYta(45);
 
     rulesHandler.addRule(rule);
@@ -96,6 +105,9 @@ class RulesHandlerTest {
     apartmentAd.setSenior(false);
     apartmentAd.setHiss(true);
     apartmentAd.setBalkong(false);
+    apartmentAd.setUngdom(false);
+    apartmentAd.setKorttid(true);
+    apartmentAd.setNyproduktion(true);
     apartmentAd.setYta(45);
 
     rulesHandler.addRule(rule);
@@ -118,6 +130,9 @@ class RulesHandlerTest {
     apartmentAd.setSenior(true);
     apartmentAd.setHiss(true);
     apartmentAd.setBalkong(true);
+    apartmentAd.setUngdom(true);
+    apartmentAd.setKorttid(false);
+    apartmentAd.setNyproduktion(true);
     apartmentAd.setYta(45);
 
     rulesHandler.addRule(rule);
