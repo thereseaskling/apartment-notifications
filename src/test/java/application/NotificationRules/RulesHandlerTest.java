@@ -27,6 +27,9 @@ class RulesHandlerTest {
     apartmentAd.setKommun("Stockholm");
     apartmentAd.setAntalRum(5);
     apartmentAd.setStudent(false);
+    apartmentAd.setSenior(false);
+    apartmentAd.setHiss(true);
+    apartmentAd.setBalkong(false);
     apartmentAd.setYta(45);
 
     rulesHandler.addRule(rule);
@@ -46,6 +49,9 @@ class RulesHandlerTest {
     apartmentAd.setKommun("Stockholm");
     apartmentAd.setAntalRum(5);
     apartmentAd.setStudent(true);
+    apartmentAd.setSenior(true);
+    apartmentAd.setHiss(false);
+    apartmentAd.setBalkong(false);
     apartmentAd.setYta(45);
 
     rulesHandler.addRule(rule);
@@ -64,7 +70,10 @@ class RulesHandlerTest {
     final ApartmentAd apartmentAd = new ApartmentAd();
     apartmentAd.setKommun("Stockholm");
     apartmentAd.setAntalRum(5);
-    apartmentAd.setStudent(false);
+    apartmentAd.setStudent(true);
+    apartmentAd.setSenior(false);
+    apartmentAd.setHiss(false);
+    apartmentAd.setBalkong(true);
     apartmentAd.setYta(45);
 
     rulesHandler.addRule(rule);
@@ -84,6 +93,9 @@ class RulesHandlerTest {
     apartmentAd.setStadsdel("Östermalm");
     apartmentAd.setAntalRum(5);
     apartmentAd.setStudent(false);
+    apartmentAd.setSenior(false);
+    apartmentAd.setHiss(true);
+    apartmentAd.setBalkong(false);
     apartmentAd.setYta(45);
 
     rulesHandler.addRule(rule);
@@ -102,7 +114,10 @@ class RulesHandlerTest {
     final ApartmentAd apartmentAd = new ApartmentAd();
     apartmentAd.setStadsdel("Östermalm");
     apartmentAd.setAntalRum(5);
-    apartmentAd.setStudent(false);
+    apartmentAd.setStudent(true);
+    apartmentAd.setSenior(true);
+    apartmentAd.setHiss(true);
+    apartmentAd.setBalkong(true);
     apartmentAd.setYta(45);
 
     rulesHandler.addRule(rule);

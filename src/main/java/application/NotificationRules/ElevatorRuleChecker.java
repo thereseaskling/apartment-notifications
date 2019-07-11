@@ -7,38 +7,37 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class StudentRuleChecker implements RuleChecker {
+public class ElevatorRuleChecker implements RuleChecker {
 
-  private final Map<Boolean, RetirementRuleChecker> studentRules;
+  private final Map<Boolean, BalconyRuleChecker> elevatorRules;
 
-  public StudentRuleChecker(final RuleInfo rule) {
-    studentRules = new HashMap<>();
+  public ElevatorRuleChecker(final RuleInfo rule) {
+    elevatorRules = new HashMap<>();
     addRule(rule);
   }
 
   @Override
   public void addRule(final RuleInfo rule) {
-    if (rule.isStudent().isPresent()) {
-      addRule(rule.isStudent().get(), rule);
-    }
-    else {
+    if (rule.isElevator().isPresent()) {
+      addRule(rule.isElevator().get(), rule);
+    } else {
       addRule(true, rule);
       addRule(false, rule);
     }
   }
 
-  private void addRule(final boolean isStudent, final RuleInfo rule) {
-    if (studentRules.containsKey(isStudent)) {
-      studentRules.get(isStudent).addRule(rule);
+  private void addRule(final boolean isElevator, final RuleInfo rule) {
+    if (elevatorRules.containsKey(isElevator)) {
+      elevatorRules.get(isElevator).addRule(rule);
     } else {
-      studentRules.put(isStudent, new RetirementRuleChecker(rule));
+      elevatorRules.put(isElevator, new BalconyRuleChecker(rule));
     }
   }
 
   @Override
   public List<String> getMatchingRecipients(final ApartmentAd apartmentAd) {
     final List<String> matchingRecipients = new ArrayList<>();
-    final Optional<RetirementRuleChecker> rules = Optional.ofNullable(studentRules.get(apartmentAd.getStudent()));
+    final Optional<BalconyRuleChecker> rules = Optional.ofNullable(elevatorRules.get(apartmentAd.getHiss()));
     rules.ifPresent(rule -> matchingRecipients.addAll(rule.getMatchingRecipients(apartmentAd)));
     return matchingRecipients;
   }

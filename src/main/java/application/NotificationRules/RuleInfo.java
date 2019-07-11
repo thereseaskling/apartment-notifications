@@ -9,12 +9,15 @@ import java.util.Optional;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class RuleInfo implements Serializable {
+
   private List<ApartmentArea> areas;
   private List<SubArea> subAreas;
   private List<Integer> rooms;
   private Pair<Integer, Integer> sizeRange;
-  private boolean student;
-  private boolean senior;
+  private Boolean student;
+  private Boolean senior;
+  private Boolean elevator;
+  private Boolean balcony;
 
   private final String email;
 
@@ -84,5 +87,21 @@ public class RuleInfo implements Serializable {
 
   public String getEmail() {
     return email;
+  }
+
+  public Optional<Boolean> isElevator() {
+    return Optional.ofNullable(elevator);
+  }
+
+  public void setElevator(final boolean elevator) {
+    this.elevator = elevator;
+  }
+
+  public Optional<Boolean> isBalcony() {
+    return Optional.ofNullable(balcony);
+  }
+
+  public void setBalcony(final boolean balcony) {
+    this.balcony = balcony;
   }
 }
