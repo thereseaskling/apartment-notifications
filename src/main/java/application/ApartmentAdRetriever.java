@@ -67,6 +67,7 @@ public class ApartmentAdRetriever {
 
   @PreDestroy
   public void destroy() {
+    LOG.info("Cancelling timer before shutdown");
     timer.cancel();
   }
 }

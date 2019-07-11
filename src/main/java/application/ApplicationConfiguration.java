@@ -43,13 +43,13 @@ public class ApplicationConfiguration {
   }
 
   @Bean
-  ApartmentAdHandler adHandler(final NotificationHandler notificationHandler) {
-    return new ApartmentAdHandler(notificationHandler);
+  ApartmentAdHandler adHandler(final NotificationHandler notificationHandler, final ObjectMapper objectMapper) {
+    return new ApartmentAdHandler(notificationHandler, objectMapper);
   }
 
   @Bean
-  RuleHandler ruleHandler(){
-    final RuleHandler ruleHandler = new RuleHandler();
+  RuleHandler ruleHandler(final ObjectMapper objectMapper) {
+    final RuleHandler ruleHandler = new RuleHandler(objectMapper);
     final RuleInfo ruleInfo = new RuleInfo("therese.askling@gmail.com");
 
     ruleInfo.setAreas(Arrays.asList(ApartmentArea.STOCKHOLM));
@@ -58,7 +58,12 @@ public class ApplicationConfiguration {
   }
 
   @Bean
-  NotificationHandler notificationHandler(final RuleHandler ruleHandler) {
-    return new NotificationHandler(ruleHandler);
+  NotificationHandler notificationHandler(final RuleHandler ruleHandler, final EmailSender emailSender) {
+    return new NotificationHandler(ruleHandler, emailSender);
+  }
+
+  @Bean
+  EmailSender emailSender() {
+    return new EmailSender("lediga.lagenheter.stockhom@gmail.com", "ApartmentNotifications1337!");
   }
 }

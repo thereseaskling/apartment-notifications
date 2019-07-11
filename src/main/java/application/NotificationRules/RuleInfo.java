@@ -2,13 +2,13 @@ package application.NotificationRules;
 
 import application.ApartmentInfo.ApartmentArea;
 import application.ApartmentInfo.SubArea;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.apache.commons.lang3.tuple.Pair;
 
-public class RuleInfo {
-
+public class RuleInfo implements Serializable {
   private List<ApartmentArea> areas;
   private List<SubArea> subAreas;
   private List<Integer> rooms;
@@ -23,6 +23,15 @@ public class RuleInfo {
     areas = new ArrayList<>();
     subAreas = new ArrayList<>();
     rooms = new ArrayList<>();
+  }
+
+  public RuleInfo(final List<ApartmentArea> areas, final List<SubArea> subAreas, final List<Integer> rooms,
+      final Pair<Integer, Integer> sizeRange, final String email) {
+    this.areas = areas;
+    this.subAreas = subAreas;
+    this.rooms = rooms;
+    this.sizeRange = sizeRange;
+    this.email = email;
   }
 
   public List<ApartmentArea> getAreas() {

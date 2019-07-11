@@ -6,17 +6,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import application.ApartmentInfo.ApartmentAd;
 import application.ApartmentInfo.ApartmentArea;
 import application.ApartmentInfo.SubArea;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Arrays;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 
 class RulesHandlerTest {
 
+  private final ObjectMapper objectMapper = new ObjectMapper();
   private final String myEmail = "MyEmail";
 
   @Test
   void shouldGetCorrectRecipientWhenAddingArea() {
-    final RuleHandler rulesHandler = new RuleHandler();
+    final RuleHandler rulesHandler = new RuleHandler(objectMapper);
 
     final RuleInfo rule = new RuleInfo(myEmail);
     rule.setAreas(Arrays.asList(ApartmentArea.STOCKHOLM));
@@ -35,7 +37,7 @@ class RulesHandlerTest {
 
   @Test
   void shouldGetCorrectRecipientWhenCheckingForStudent() {
-    final RuleHandler rulesHandler = new RuleHandler();
+    final RuleHandler rulesHandler = new RuleHandler(objectMapper);
 
     final RuleInfo rule = new RuleInfo(myEmail);
     rule.setStudent(true);
@@ -54,7 +56,7 @@ class RulesHandlerTest {
 
   @Test
   void shouldGetCorrectRecipientWhenCheckingForSize() {
-    final RuleHandler rulesHandler = new RuleHandler();
+    final RuleHandler rulesHandler = new RuleHandler(objectMapper);
 
     final RuleInfo rule = new RuleInfo(myEmail);
     rule.setSizeRange(Pair.of(40, 60));
@@ -73,7 +75,7 @@ class RulesHandlerTest {
 
   @Test
   void shouldGetCorrectRecipientWhenCheckingForSubArea() {
-    final RuleHandler rulesHandler = new RuleHandler();
+    final RuleHandler rulesHandler = new RuleHandler(objectMapper);
 
     final RuleInfo rule = new RuleInfo(myEmail);
     rule.setSubAreas(Arrays.asList((SubArea.OSTERMALM)));
@@ -92,7 +94,7 @@ class RulesHandlerTest {
 
   @Test
   void shouldGetCorrectRecipientWhenCheckingForNumberOfRooms() {
-    final RuleHandler rulesHandler = new RuleHandler();
+    final RuleHandler rulesHandler = new RuleHandler(objectMapper);
 
     final RuleInfo rule = new RuleInfo(myEmail);
     rule.setRooms(Arrays.asList(5));

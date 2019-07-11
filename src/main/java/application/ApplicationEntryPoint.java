@@ -18,8 +18,7 @@ public class ApplicationEntryPoint implements ApplicationRunner {
 
   @Override
   public void run(final ApplicationArguments args) throws Exception {
-    LOG.info("Requesting info");
+    LOG.info("Starting application");
     apartmentAdRetriever.requestAds();
-    LOG.info("Done");
   }
 }
