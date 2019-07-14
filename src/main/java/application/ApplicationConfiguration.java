@@ -58,7 +58,7 @@ public class ApplicationConfiguration {
     ruleHandler.addRule(ruleInfo);
 
     final RuleInfo momRule = setParentRuleInfo(new RuleInfo("britt.askling@gmail.com"));
-    final RuleInfo dadRule = setParentRuleInfo(new RuleInfo("Janneaskling@gmail.com"));
+    final RuleInfo dadRule = setParentRuleInfo(new RuleInfo("janneaskling@gmail.com"));
     ruleHandler.addRule(momRule);
     ruleHandler.addRule(dadRule);
 

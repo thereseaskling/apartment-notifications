@@ -30,12 +30,14 @@ public class BalconyRuleChecker implements RuleChecker {
     if (matchingRecipients.containsKey(isBalcony)) {
       matchingRecipients.get(isBalcony).add(rule.getEmail());
     } else {
-      matchingRecipients.put(isBalcony, Arrays.asList(rule.getEmail()));
+      final List<String> emails = new ArrayList<>();
+      emails.add(rule.getEmail());
+      matchingRecipients.put(isBalcony, emails);
     }
   }
 
   @Override
   public List<String> getMatchingRecipients(final ApartmentAd apartmentAd) {
-    return matchingRecipients.getOrDefault(apartmentAd.getStudent(), new ArrayList<>());
+    return matchingRecipients.getOrDefault(apartmentAd.getBalkong(), new ArrayList<>());
   }
 }
