@@ -1,11 +1,13 @@
 package application;
 
 import application.ApartmentInfo.ApartmentArea;
+import application.ApartmentInfo.SubArea;
 import application.NotificationRules.RuleHandler;
 import application.NotificationRules.RuleInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.charset.Charset;
 import java.util.Arrays;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -54,7 +56,34 @@ public class ApplicationConfiguration {
 
     ruleInfo.setAreas(Arrays.asList(ApartmentArea.STOCKHOLM));
     ruleHandler.addRule(ruleInfo);
+
+    final RuleInfo momRule = setParentRuleInfo(new RuleInfo("britt.askling@gmail.com"));
+    final RuleInfo dadRule = setParentRuleInfo(new RuleInfo("Janneaskling@gmail.com"));
+    ruleHandler.addRule(momRule);
+    ruleHandler.addRule(dadRule);
+
     return ruleHandler;
+  }
+
+  private RuleInfo setParentRuleInfo(final RuleInfo rule) {
+    rule.setAreas(Arrays.asList(ApartmentArea.STOCKHOLM));
+    rule.setSubAreas(Arrays.asList(SubArea.HOGDALEN, SubArea.SODERMALM, SubArea.MIDSOMMARKRANSEN,
+        SubArea.FRUANGEN, SubArea.HOKARANGEN, SubArea.LILJEHOLMEN, SubArea.BREDANG, SubArea.GUBBANGEN, SubArea.HAGERSTEN,
+        SubArea.STORA_ESSINGEN, SubArea.VASTBERGA, SubArea.VASASTADEN, SubArea.KUNGSHOLMEN, SubArea.TALLKROGEN,
+        SubArea.NORRA_DJURGARDEN, SubArea.BAGARMOSSEN, SubArea.STADSHAGEN, SubArea.ENSKEDE_GARD, SubArea.LILLA_ESSINGEN, SubArea.OSTERMALM,
+        SubArea.HJORTHAGEN, SubArea.KARRTORP, SubArea.SKARHOLMEN, SubArea.SVEDMYRA, SubArea.SODRA_HAMMARBYHAMNEN, SubArea.VASTERTORP,
+        SubArea.ARSTA, SubArea.ASPUDDEN, SubArea.ORNSBERG, SubArea.AXELSBERG, SubArea.ALVSJO, SubArea.HAGERSTENSASEN, SubArea.STUREBY,
+        SubArea.OSTBERGA, SubArea.GRONDAL, SubArea.LANGBRO));
+    rule.setYouth(false);
+    rule.setStudent(false);
+    rule.setTemporaryQueue(false);
+    rule.setSenior(false);
+    rule.setShortTime(false);
+    rule.setElevator(true);
+    rule.setBalcony(true);
+    rule.setRooms(Arrays.asList(2, 3, 4, 5, 6, 7, 8));
+    rule.setSizeRange(Pair.of(70, 150));
+    return rule;
   }
 
   @Bean

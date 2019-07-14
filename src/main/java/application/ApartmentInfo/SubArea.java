@@ -63,6 +63,16 @@ public enum SubArea {
   VASTERTORP("Västertorp"),
   ARSTA("Årsta"),
   BECKOMBERGA("Beckomberga"),
+  BLACKEBERG("Blackeberg"),
+  LANGBRO("Långbro"),
+  GRONDAL("Gröndal"),
+  STUREBY("Stureby"),
+  OSTBERGA("Östberga"),
+  HAGERSTENSASEN("Hägerstensåsen"),
+  ALVSJO("Älvjö"),
+  ASPUDDEN("Aspudden"),
+  AXELSBERG("Axelsberg"),
+  ORNSBERG("Örnsberg"),
   EMPTY("empty");
 
   private final String areaValue;
