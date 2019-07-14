@@ -27,9 +27,9 @@ public class NotificationHandler {
     LOG.info("Notifying recipient {} about ad {}", recipient, apartmentAd);
     final String apartmentAdLink = "bostad.stockholm.se" + apartmentAd.getUrl();
     final String messageFormat = "Nu finns det en ny lägenhet tillgänglig på bostadsförmedlingen som matchar dina sökkriterier: \n%s";
-    final String apartmentInformationFormat = "Kommun: %s \nStadsdel:%s \nAddress: %s \nAntal rum: %s \nYta: %s\nLänk till annons:%s";
+    final String apartmentInformationFormat = "Kommun: %s \nStadsdel:%s \nAddress: %s \nAntal rum: %s \nYta: %s \nHyra: %s\nLänk till annons:%s";
     final String apartmentInformation = String.format(apartmentInformationFormat, apartmentAd.getKommun(), apartmentAd.getStadsdel(),
-        apartmentAd.getGatuadress(), apartmentAd.getAntalRum(), apartmentAd.getYta(), apartmentAdLink);
+        apartmentAd.getGatuadress(), apartmentAd.getAntalRum(), apartmentAd.getYta(), apartmentAd.getHyra(), apartmentAdLink);
     final String message = String.format(messageFormat, apartmentInformation);
     final String subject = "Ny lägenhet tillgänglig på bostadsförmedlingen";
 
