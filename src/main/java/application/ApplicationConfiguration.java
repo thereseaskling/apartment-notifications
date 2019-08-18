@@ -66,14 +66,7 @@ public class ApplicationConfiguration {
   }
 
   private RuleInfo setParentRuleInfo(final RuleInfo rule) {
-    rule.setAreas(Arrays.asList(ApartmentArea.STOCKHOLM));
-    rule.setSubAreas(Arrays.asList(SubArea.HOGDALEN, SubArea.SODERMALM, SubArea.MIDSOMMARKRANSEN,
-        SubArea.FRUANGEN, SubArea.HOKARANGEN, SubArea.LILJEHOLMEN, SubArea.BREDANG, SubArea.GUBBANGEN, SubArea.HAGERSTEN,
-        SubArea.STORA_ESSINGEN, SubArea.VASTBERGA, SubArea.VASASTADEN, SubArea.KUNGSHOLMEN, SubArea.TALLKROGEN,
-        SubArea.NORRA_DJURGARDEN, SubArea.BAGARMOSSEN, SubArea.STADSHAGEN, SubArea.ENSKEDE_GARD, SubArea.LILLA_ESSINGEN, SubArea.OSTERMALM,
-        SubArea.HJORTHAGEN, SubArea.KARRTORP, SubArea.SKARHOLMEN, SubArea.SVEDMYRA, SubArea.SODRA_HAMMARBYHAMNEN, SubArea.VASTERTORP,
-        SubArea.ARSTA, SubArea.ASPUDDEN, SubArea.ORNSBERG, SubArea.AXELSBERG, SubArea.ALVSJO, SubArea.HAGERSTENSASEN, SubArea.STUREBY,
-        SubArea.OSTBERGA, SubArea.GRONDAL, SubArea.LANGBRO));
+    rule.setAreas(Arrays.asList(ApartmentArea.STOCKHOLM, ApartmentArea.HUDDINGE));
     rule.setYouth(false);
     rule.setStudent(false);
     rule.setTemporaryQueue(false);
@@ -82,7 +75,7 @@ public class ApplicationConfiguration {
     rule.setElevator(true);
     rule.setBalcony(true);
     rule.setRooms(Arrays.asList(2, 3, 4, 5, 6, 7, 8));
-    rule.setSizeRange(Pair.of(70, 150));
+    rule.setSizeRange(Pair.of(65, 150));
     return rule;
   }
 
